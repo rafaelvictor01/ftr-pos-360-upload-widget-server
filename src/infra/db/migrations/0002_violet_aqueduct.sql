@@ -1,0 +1,1 @@
+ALTER TABLE "uploads" RENAME COLUMN "remoteUrl" TO "remote_url";

@@ -8,6 +8,20 @@
       "when": 1762974631911,
       "tag": "0000_sudden_fallen_one",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1762977501455,
+      "tag": "0001_mature_warstar",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1762977548569,
+      "tag": "0002_violet_aqueduct",
+      "breakpoints": true
     }
   ]
 }
