@@ -5,11 +5,11 @@ import fastifySwaggerUi from '@fastify/swagger-ui'
 import { fastify } from 'fastify'
 import {
   hasZodFastifySchemaValidationErrors,
-  jsonSchemaTransform,
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod'
-import { uploadImageController } from '@/controllers/uploadImageController'
+import { uploadFileController } from '@/controllers/uploadFileController'
+import { transformSwaggerSchema } from '../utils/transformSwaggerSchema'
 
 const server = fastify()
 
@@ -22,7 +22,7 @@ server.register(fastifyCors, { origin: '*' })
 server.register(fastifyMultipart)
 server.register(fastifySwagger, {
   openapi: { info: { title: 'Upload Server', version: '1.0.0' } },
-  transform: jsonSchemaTransform,
+  transform: transformSwaggerSchema,
 })
 
 server.register(fastifySwaggerUi, {
@@ -30,7 +30,7 @@ server.register(fastifySwaggerUi, {
 })
 
 // Controllers
-server.register(uploadImageController)
+server.register(uploadFileController)
 
 // Error Handler
 server.setErrorHandler((error, _request, reply) => {
