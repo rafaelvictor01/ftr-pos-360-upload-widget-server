@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto'
 import dayjs from 'dayjs'
 import { describe, expect, it } from 'vitest'
-import { getUploadImage } from '@/services/uploadFileService/getUploadImage'
+import { getUploadImage } from '@/services/fileService/getUploadImage'
 import { isRight, unwrapEither } from '@/utils/either'
 import { makeUpload } from '../factories/makeUpload'
 
