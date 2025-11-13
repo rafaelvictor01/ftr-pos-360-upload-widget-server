@@ -1,7 +1,7 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { getUploadFileResponseDtoSchema } from '@/dtos/getUploadFileResponseDTO'
 import { listDtoSchema } from '@/dtos/listDTO'
-import { getUploadImage } from '@/services/uploadFileService/getUploadImage'
+import { getUploadImage } from '@/services/fileService/getUploadImage'
 import { unwrapEither } from '@/utils/either'
 
 export const getUploadsRoute: FastifyPluginAsyncZod = async server => {
@@ -10,13 +10,14 @@ export const getUploadsRoute: FastifyPluginAsyncZod = async server => {
     {
       schema: {
         summary: 'Get Uploads',
-        tags: ['uploads'],
+        tags: ['Uploads'],
         querystring: listDtoSchema,
         response: { 200: getUploadFileResponseDtoSchema },
       },
     },
     async (request, reply) => {
-      const { page, pageSize, searchQuery, sortBy, sortDirection } = request.query
+      const { page, pageSize, searchQuery, sortBy, sortDirection } =
+        request.query
 
       const result = await getUploadImage({
         page,

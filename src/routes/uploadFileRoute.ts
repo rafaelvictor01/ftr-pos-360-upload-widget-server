@@ -1,7 +1,7 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import z from 'zod'
 import { uploadFileDtoResponseSchema } from '@/dtos/uploadFileResponseDTO'
-import { uploadImage } from '@/services/uploadFileService/uploadImage'
+import { uploadImage } from '@/services/fileService/uploadImage'
 import { isRight, unwrapEither } from '@/utils/either'
 import { FILE_SIZE_2MB } from '@/utils/sharedConsts'
 
@@ -12,7 +12,7 @@ export const uploadFileRoute: FastifyPluginAsyncZod = async server => {
       schema: {
         summary: 'Upload an File',
         consumes: ['multipart/form-data'],
-        tags: ['uploads'],
+        tags: ['Uploads'],
         response: {
           200: uploadFileDtoResponseSchema,
           400: z.object({ message: z.string() }).describe('File is required.'),

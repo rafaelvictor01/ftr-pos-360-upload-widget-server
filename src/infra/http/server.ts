@@ -8,6 +8,7 @@ import {
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod'
+import { exportUploadsRoute } from '@/routes/exportUploadsRoute'
 import { getUploadsRoute } from '@/routes/getUploadsRoute'
 import { uploadFileRoute } from '@/routes/uploadFileRoute'
 import { transformSwaggerSchema } from '../utils/transformSwaggerSchema'
@@ -33,6 +34,7 @@ server.register(fastifySwaggerUi, {
 // Routes
 server.register(uploadFileRoute)
 server.register(getUploadsRoute)
+server.register(exportUploadsRoute)
 
 // Error Handler
 server.setErrorHandler((error, _request, reply) => {
