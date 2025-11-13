@@ -1,4 +1,4 @@
-export const ALLOWED_MIME_TYPES = [
+export const ALLOWED_IMG_MIME_TYPES = [
   'image/jpg',
   'image/jpeg',
   'image/png',

@@ -1,7 +1,7 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import z from 'zod'
 import { uploadFileDtoResponseSchema } from '@/dtos/uploadFileResponseDTO'
-import { uploadFile } from '@/services/uploadFileService'
+import { uploadImage } from '@/services/uploadFileService'
 import { isRight, unwrapEither } from '@/utils/either'
 import { FILE_SIZE_2MB } from '@/utils/sharedConsts'
 
@@ -25,15 +25,17 @@ export const uploadFileController: FastifyPluginAsyncZod = async server => {
 
       if (!uploadedFile) return reply.status(400)
 
-      const result = await uploadFile({
+      const result = await uploadImage({
         fileName: uploadedFile.filename,
         contentStream: uploadedFile.file,
         contentType: uploadedFile.mimetype,
       })
 
-      if (isRight(result))
-        return reply.status(200).send({ url: result.right.url })
-
+      if (isRight(result)) {
+        const auxResult = unwrapEither(result)
+        return reply.status(200).send({ url: auxResult.url })
+      }
+      
       const error = unwrapEither(result)
 
       switch (error.constructor.name) {
