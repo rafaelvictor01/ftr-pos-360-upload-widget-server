@@ -8,7 +8,8 @@ import {
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod'
-import { uploadFileController } from '@/controllers/uploadFileController'
+import { getUploadsRoute } from '@/routes/getUploadsRoute'
+import { uploadFileRoute } from '@/routes/uploadFileRoute'
 import { transformSwaggerSchema } from '../utils/transformSwaggerSchema'
 
 const server = fastify()
@@ -29,8 +30,9 @@ server.register(fastifySwaggerUi, {
   routePrefix: '/docs',
 })
 
-// Controllers
-server.register(uploadFileController)
+// Routes
+server.register(uploadFileRoute)
+server.register(getUploadsRoute)
 
 // Error Handler
 server.setErrorHandler((error, _request, reply) => {

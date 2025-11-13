@@ -5,13 +5,14 @@ import { uploadImage } from '@/services/uploadFileService/uploadImage'
 import { isRight, unwrapEither } from '@/utils/either'
 import { FILE_SIZE_2MB } from '@/utils/sharedConsts'
 
-export const uploadFileController: FastifyPluginAsyncZod = async server => {
+export const uploadFileRoute: FastifyPluginAsyncZod = async server => {
   server.post(
     '/upload',
     {
       schema: {
         summary: 'Upload an File',
         consumes: ['multipart/form-data'],
+        tags: ['uploads'],
         response: {
           200: uploadFileDtoResponseSchema,
           400: z.object({ message: z.string() }).describe('File is required.'),
@@ -39,7 +40,7 @@ export const uploadFileController: FastifyPluginAsyncZod = async server => {
         const auxResult = unwrapEither(result)
         return reply.status(200).send({ url: auxResult.url })
       }
-      
+
       const error = unwrapEither(result)
 
       switch (error.constructor.name) {
