@@ -7,7 +7,7 @@ import { R2_FOLDERS_ENUM } from '@/infra/storage/r2FoldersEnum'
 import { uploadFileToStorage } from '@/infra/storage/uploadFileToStorage'
 import type { Either } from '@/utils/either'
 import { makeLeft, makeRight } from '@/utils/either'
-import { ALLOWED_IMG_MIME_TYPES } from '@/utils/sharedConsts'
+import { IMG_MIME_TYPES } from '@/utils/sharedConsts'
 import { InvalidFileFormat } from './errors/invalidFileFormat'
 
 export async function uploadImage(
@@ -16,7 +16,7 @@ export async function uploadImage(
   const { fileName, contentType, contentStream } =
     uploadFileDtoSchema.parse(input)
 
-  if (!ALLOWED_IMG_MIME_TYPES.includes(contentType))
+  if (!IMG_MIME_TYPES.includes(contentType))
     return makeLeft(new InvalidFileFormat())
 
   const { key, url } = await uploadFileToStorage({

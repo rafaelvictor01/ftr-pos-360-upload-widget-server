@@ -6,11 +6,18 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch --env-file .env src/infra/http/server.ts",
-    "test": "dotenv -e .env.test -- vitest run",
-    "test:watch": "dotenv -e .env.test -- vitest",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+
+    "test": "dotenv -e .env.test -- vitest run",
+    "test:watch": "dotenv -e .env.test -- vitest",
+
+    "db:create:test": "docker exec -e PGPASSWORD=docker -i ftr-pos-360-upload-widget-server-pg-1 createdb -U docker upload_test || echo 'Banco upload_test já existe'",
+    "db:migrate:test": "pnpm run db:create:test && dotenv -e .env.test -- drizzle-kit migrate",
+
+    "pretest": "pnpm run db:migrate:test",
+    "pretest:watch": "pnpm run db:migrate:test"
   },
   "keywords": [],
   "author": "",
@@ -33,6 +40,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.3.5",
     "@types/node": "^24.10.1",
+    "dotenv-cli": "^11.0.0",
     "drizzle-kit": "^0.31.6",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
