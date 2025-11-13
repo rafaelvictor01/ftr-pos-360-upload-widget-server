@@ -1,6 +1,7 @@
 import type { UploadFileDto } from '@/dtos/uploadFileDTO'
 import { uploadFileDtoSchema } from '@/dtos/uploadFileDTO'
 import type { UploadFileResponseDto } from '@/dtos/uploadFileResponseDTO'
+import { InvalidFileFormat } from '@/errors/invalidFileFormat';
 import { db } from "@/infra/db";
 import { schemas } from "@/infra/db/schemas"
 import { R2_FOLDERS_ENUM } from '@/infra/storage/r2FoldersEnum'
@@ -8,7 +9,6 @@ import { uploadFileToStorage } from '@/infra/storage/uploadFileToStorage'
 import type { Either } from '@/utils/either'
 import { makeLeft, makeRight } from '@/utils/either'
 import { IMG_MIME_TYPES } from '@/utils/sharedConsts'
-import { InvalidFileFormat } from './errors/invalidFileFormat'
 
 export async function uploadImage(
   input: UploadFileDto

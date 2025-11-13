@@ -2,11 +2,11 @@ import { randomUUID } from 'node:crypto'
 import { Readable } from 'node:stream'
 import { eq } from 'drizzle-orm'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { InvalidFileFormat } from '@/errors/invalidFileFormat'
 import { db } from '@/infra/db'
 import { schemas } from '@/infra/db/schemas'
 import { isLeft, isRight, unwrapEither } from '@/utils/either'
-import { uploadImage } from '.'
-import { InvalidFileFormat } from './errors/invalidFileFormat'
+import { uploadImage } from './uploadImage'
 
 describe('upload image', () => {
   beforeAll(() => {

@@ -1,7 +1,7 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import z from 'zod'
 import { uploadFileDtoResponseSchema } from '@/dtos/uploadFileResponseDTO'
-import { uploadImage } from '@/services/uploadFileService'
+import { uploadImage } from '@/services/uploadFileService/uploadImage'
 import { isRight, unwrapEither } from '@/utils/either'
 import { FILE_SIZE_2MB } from '@/utils/sharedConsts'
 
