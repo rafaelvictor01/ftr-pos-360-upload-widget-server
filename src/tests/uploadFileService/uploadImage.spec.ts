@@ -5,8 +5,8 @@ import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { InvalidFileFormat } from '@/errors/invalidFileFormat'
 import { db } from '@/infra/db'
 import { schemas } from '@/infra/db/schemas'
+import { uploadImage } from '@/services/uploadFileService/uploadImage'
 import { isLeft, isRight, unwrapEither } from '@/utils/either'
-import { uploadImage } from './uploadImage'
 
 describe('upload image', () => {
   beforeAll(() => {
