@@ -31,6 +31,10 @@ export const uploadFileController: FastifyPluginAsyncZod = async server => {
         contentType: uploadedFile.mimetype,
       })
 
+      if (uploadedFile.file.truncated) {
+        return reply.status(400).send({ message: 'File size limit reached.' })
+      }
+
       if (isRight(result)) {
         const auxResult = unwrapEither(result)
         return reply.status(200).send({ url: auxResult.url })
