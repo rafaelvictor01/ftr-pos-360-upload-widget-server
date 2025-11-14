@@ -10,7 +10,7 @@ import { isLeft, isRight, unwrapEither } from '@/utils/either'
 
 describe('upload image', () => {
   beforeAll(() => {
-    vi.mock('@/infra/storage/upload-file-to-storage', () => {
+    vi.mock('@/infra/storage/uploadFileToStorage', () => {
       return {
         uploadFileToStorage: vi.fn().mockImplementation(() => {
           return {
