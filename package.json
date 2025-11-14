@@ -14,7 +14,8 @@
     "db:create:test": "docker exec -e PGPASSWORD=docker -i ftr-pos-360-upload-widget-server-pg-1 createdb -U docker upload_test || echo 'Banco upload_test já existe'",
     "db:migrate:test": "pnpm run db:create:test && dotenv -e .env.test -- drizzle-kit migrate",
     "pretest": "pnpm run db:migrate:test",
-    "pretest:watch": "pnpm run db:migrate:test"
+    "pretest:watch": "pnpm run db:migrate:test",
+    "build": "tsup-node"
   },
   "keywords": [],
   "author": "",
@@ -33,6 +34,7 @@
     "fastify": "^5.6.2",
     "fastify-type-provider-zod": "^6.1.0",
     "postgres": "^3.4.7",
+    "tsup": "^8.5.1",
     "uuidv7": "^1.0.2",
     "zod": "^4.1.12"
   },
