@@ -17,8 +17,27 @@
 #     runs-on: ubuntu-latest
 #     steps:
 #       - name: Checkout
-#         id: checkout
 #         uses: actions/checkout@v4
+#         id: checkout
+
+#       - name: Configure Node
+#         id: configure-node
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 22.15
+
+#       - name: Install pnpm
+#         id: install-pnpm
+#         uses: pnpm/action-setup@v4
+#         # with:
+#           # version: 8
+  
+#       - name: Install dependencies
+#         id: install-dependencies
+#         run: pnpm install --frozen-lockfile
+  
+#       - name: Run Tests
+#         run: pnpm run test
 
 #       - name: Login to DockerHub
 #         id: login-docker-hub
