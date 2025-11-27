@@ -8,6 +8,7 @@ import {
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod'
+import { env } from '@/env'
 import { exportUploadsRoute } from '@/routes/exportUploadsRoute'
 import { getUploadsRoute } from '@/routes/getUploadsRoute'
 import { uploadFileRoute } from '@/routes/uploadFileRoute'
@@ -50,7 +51,8 @@ server.setErrorHandler((error, _request, reply) => {
   return reply.status(500).send({ message: 'Internal server error.' })
 })
 
-server.listen({ port: 3333, host: '0.0.0.0'}).then(() => {
+server.listen({ port: env.PORT, host: '0.0.0.0' }).then(() => {
   console.log('HTTP server running!')
+  console.log('See: ', `http://localhost:${env.PORT}/docs`)
 })
 
