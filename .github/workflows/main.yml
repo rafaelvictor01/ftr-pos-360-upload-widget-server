@@ -1,0 +1,41 @@
+name: widget-server pipe ECR
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  run-ci:
+    name: widget-server run-ci ECR
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        id: checkout
+
+      - name: Configure Node
+        id: configure-node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.15
+
+      - name: Install pnpm
+        id: install-pnpm
+        uses: pnpm/action-setup@v4
+        # with:
+          # version: 8
+  
+      - name: Install dependencies
+        id: install-dependencies
+        run: pnpm install --frozen-lockfile
+  
+      - name: Configure AWS Credentials
+        id: configure-aws-credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+  
