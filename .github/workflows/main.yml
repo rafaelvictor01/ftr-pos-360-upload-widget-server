@@ -12,7 +12,7 @@ on:
       - synchronize
 
 jobs:
-  run-ci:
+  run-ci-aws-ecr:
     name: widget-server run-ci ECR
     runs-on: ubuntu-latest
 
